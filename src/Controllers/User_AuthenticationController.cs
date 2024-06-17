@@ -21,6 +21,7 @@ namespace User_Authentication.Controllers
 
         // GET: api/<User_Authentication>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
             return await _context!.Users.ToListAsync();
@@ -28,6 +29,7 @@ namespace User_Authentication.Controllers
 
         // GET api/<User_Authentication>/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             var user = _context!.Users.FindAsync(id);
@@ -42,6 +44,7 @@ namespace User_Authentication.Controllers
 
         // POST api/<User_Authentication>
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<User>> Post([FromBody] User user)
         {
             _context!.Users.Add(user);
@@ -53,6 +56,7 @@ namespace User_Authentication.Controllers
 
         // PUT api/<User_Authentication>/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Put(int id, [FromBody] User user)
         {
             if (id != user.Id)
@@ -68,6 +72,7 @@ namespace User_Authentication.Controllers
 
         // DELETE api/<User_Authentication>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _context!.Users.FindAsync(id);
